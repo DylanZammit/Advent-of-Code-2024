@@ -440,6 +440,7 @@ class Grid(dict):
     def __init__(self, grid=(), directions=directions4, skip=(), default=KeyError):
         """Initialize with either (e.g.) `Grid({(0, 0): '#', (1, 0): '.', ...})`, or
         `Grid(["#..", "..#"]) or `Grid("#..\n..#")`."""
+
         self.directions = directions
         self.default = default
         if isinstance(grid, abc.Mapping):
@@ -447,6 +448,9 @@ class Grid(dict):
         else:
             if isinstance(grid, str):
                 grid = grid.splitlines()
+                self.width = len(grid[0])
+                self.height = len(grid)
+
             self.update({(x, y): val
                          for y, row in enumerate(grid)
                          for x, val in enumerate(row)

@@ -16,10 +16,9 @@ SAXAMASAAA
 MAMMMXMMMM
 MXMXAXMASX'''
 
-datspl = dat.split('\n')
-x, y = len(datspl[0]), len(datspl)
 
 dat = Grid(dat)
+x, y = dat.width, dat.height
 print(truncate(dat, 30))
 
 
