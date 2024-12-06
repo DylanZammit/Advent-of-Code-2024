@@ -24,18 +24,8 @@ pos, dir = next(pos for pos, val in dat.items() if val == '^'), North
 
 tot = 0
 visited = {pos}
-visited_dir = {(pos, dir)}
-while True:
-    next_pos = add2(pos, dir)
-    if next_pos not in dat:
-        break
-    if dat[next_pos] != '#':
-        pos, dir = next_pos, dir
-    else:
-        next_dir = make_turn(dir, 'R')
-        next_pos = add2(pos, next_dir)
-        if next_pos in dat and dat[next_pos] != '#':
-            pos, dir = next_pos, next_dir
+while (next_pos := add2(pos, dir)) in dat:
+    pos, dir = (pos, make_turn(dir, 'R')) if dat[next_pos] == '#' else (next_pos, dir)
     visited.add(pos)
 
 tot = len(visited)
