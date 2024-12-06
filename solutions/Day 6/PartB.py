@@ -29,13 +29,12 @@ def is_loop(pos, dir, visited_dir: set = None):
     for p, _ in visited_dir:
         dat_loop[p] = '.'  # not sure why needed....probably deepcopy stuff? deepcopy too slow!
 
-    while next_pos in dat_loop:
+    while (next_pos := add2(pos, dir)) in dat_loop:
         pos, dir = (pos, make_turn(dir, 'R')) if dat_loop[next_pos] == '#' else (next_pos, dir)
         if (pos, dir) in visited_dir:
             return True
         visited_dir.add((pos, dir))
 
-        next_pos = add2(pos, dir)
     return False
 
 
