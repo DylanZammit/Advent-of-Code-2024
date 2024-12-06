@@ -26,8 +26,6 @@ def is_loop(pos, dir, visited_dir: set = None):
     next_pos = add2(pos, dir)
 
     dat_loop[next_pos] = '#'
-    for p, _ in visited_dir:
-        dat_loop[p] = '.'  # not sure why needed....probably deepcopy stuff? deepcopy too slow!
 
     while (next_pos := add2(pos, dir)) in dat_loop:
         pos, dir = (pos, make_turn(dir, 'R')) if dat_loop[next_pos] == '#' else (next_pos, dir)
@@ -44,7 +42,7 @@ def get_route(pos, dir):
     obstacles = set()
     while (next_pos := add2(pos, dir)) in dat:
         if dat[next_pos] != '#':
-            if next_pos not in obstacles and is_loop(pos, dir, visited_dir.copy()):
+            if next_pos not in visited and next_pos not in obstacles and is_loop(pos, dir, visited_dir.copy()):
                 obstacles.add(next_pos)
 
         pos, dir = (pos, make_turn(dir, 'R')) if dat[next_pos] == '#' else (next_pos, dir)
@@ -55,7 +53,7 @@ def get_route(pos, dir):
     return obstacles
 
 
-dat = Grid(puzzle)
+dat = dict(Grid(puzzle))
 print(truncate(dat, 30))
 
 obstacles = get_route(next(pos for pos, val in dat.items() if val == '^'), North)
