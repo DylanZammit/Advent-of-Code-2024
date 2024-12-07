@@ -21,19 +21,16 @@ print(truncate(dat, 30))
 from itertools import product
 
 tot = 0
-for eqn in dat:
+for lhs, *rhs in dat:
 
-    lhs = eqn[0]
-    rhs = eqn[1:]
-
-    for op in product(['+', '*', '||'], repeat=len(rhs) - 1):
+    for ops in product(['+', '*', '||'], repeat=len(rhs) - 1):
         val = rhs[0]
-        for i, r in enumerate(rhs[1:]):
-            if op[i] == '+':
+        for op, r in zip(ops, rhs[1:]):
+            if op == '+':
                 val += r
-            elif op[i] == '*':
+            elif op == '*':
                 val *= r
-            elif op[i] == '||':
+            elif op == '||':
                 val = val * 10 ** (int(log10(r)) + 1) + r
         if val == lhs:
             tot += lhs
