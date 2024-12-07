@@ -14,14 +14,6 @@ dat2 = '''7 6 4 2 1
 1 3 6 7 9'''
 
 
-def check_valid(a, b, is_asc):
-    if abs(a - b) < 1 or abs(a - b) > 3:
-        return False
-    if (is_asc and a >= b) or (not is_asc and a <= b):
-        return False
-    return True
-
-
 def check_report(report, n=0):
     if n > 1:
         return False
