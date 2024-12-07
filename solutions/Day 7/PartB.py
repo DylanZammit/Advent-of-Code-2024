@@ -1,4 +1,5 @@
 from utils import *
+from itertools import product
 from aocd import get_data, submit
 
 year, day = 2024, 7
@@ -17,8 +18,6 @@ dat2 = '''190: 10 19
 
 dat = parse(dat, ints)
 print(truncate(dat, 30))
-
-from itertools import product
 
 tot = 0
 for lhs, *rhs in dat:
