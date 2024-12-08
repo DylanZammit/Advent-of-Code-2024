@@ -101,3 +101,25 @@ Note that instead of casting to a string, concatenating and converting back to a
 ```python
 cat = lambda x, y: x * 10 ** (int(log10(y)) + 1) + y
 ```
+## [Problem 8](https://adventofcode.com/2024/day/8)
+### Part 1
+Another brute force solution. 
+* We first create a dictionary mapping each type of antenna-frequencies to their positions.
+* For each frequency we take the pairwise combinations of positions 
+* Take the difference between them.
+* Then we check if `antenna_position_1 + diff` and `antenna_position_2 - diff` are within bounds
+* If so, we add them to a set.
+* We count the length of the set
+
+### Part 2
+Same strategy is applied here, but instead of checking `antenna_position_1 + diff` and `antenna_position_2 - diff`, we repeat for
+* `antenna_position_1 + 0 * diff`
+* `antenna_position_1 + 1 * diff`
+* `antenna_position_1 + 2 * diff`
+* and so on until out of bounds....
+
+And also for 
+* `antenna_position_1 - 0 * diff`
+* `antenna_position_1 - 1 * diff`
+* `antenna_position_1 - 2 * diff`
+* and so on until out of bounds....
