@@ -1,5 +1,3 @@
-from itertools import pairwise
-
 from utils import *
 from aocd import get_data, submit
 
