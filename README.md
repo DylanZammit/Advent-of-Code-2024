@@ -123,3 +123,12 @@ And also for
 * `antenna_position_1 - 1 * diff`
 * `antenna_position_1 - 2 * diff`
 * and so on until out of bounds....
+## [Problem 10](https://adventofcode.com/2024/day/10)
+### Part 1
+A recursive solution, were we start at every position with height 0 and call method A. 
+We then turn 90 degrees in all direction, and at each turn call method A again only if the new height position is exactly
+one more than the current one. So in the first iteration, we can only move to `1` heights. If the height is `9`, return the position as a set, otherwise check the 4 directions again, this time checking for height `2`.
+Finally take the distinct count of all trail end-positions to get the answer.
+### Part 2
+Only minor adjustments needed from the above. Instead of returning the position of the end of the trail, increment a counter by 1. This way,
+we might have multiple trails that end at the same position, but no two trails will be the same.
