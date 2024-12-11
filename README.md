@@ -132,3 +132,26 @@ Finally take the distinct count of all trail end-positions to get the answer.
 ### Part 2
 Only minor adjustments needed from the above. Instead of returning the position of the end of the trail, increment a counter by 1. This way,
 we might have multiple trails that end at the same position, but no two trails will be the same.
+## [Problem 11](https://adventofcode.com/2024/day/11)
+### Part 1
+For the first solution we take a breadth first approach, where we iterate the list of stones, and follow the rules for each one.
+Once finished, repeat the process for 25 times.
+### Part 2
+The brute force solution of part 1 takes too long. So instead, we take a depth-first approach.
+For each stone we iterate, we apply the rules, and recursively re-apply these rules for the next 25 times.
+Notice that the most important part is caching the recursive function.
+```python
+@cache
+def split_num(n, iter = 0, max_iter = 25):
+    split_num_pre = partial(split_num, iter=iter + 1, max_iter=max_iter)
+    if iter == max_iter:
+        return 1
+    if n == 0:
+        return split_num_pre(1)
+    elif (n_digits := int(log10(n)) + 1) % 2 == 0:
+        n_new = n_digits // 2
+        l, r = int(n // 10 ** n_new), int(n % 10 ** n_new)
+        return split_num_pre(l) + split_num_pre(r)
+    else:
+        return split_num_pre(n * 2024)
+```

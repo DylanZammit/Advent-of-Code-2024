@@ -13,7 +13,6 @@ print(truncate(dat, 80))
 
 @cache
 def split_num(n, iter = 0, max_iter = 25):
-
     split_num_pre = partial(split_num, iter=iter + 1, max_iter=max_iter)
     if iter == max_iter:
         return 1
