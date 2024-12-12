@@ -155,3 +155,16 @@ def split_num(n, iter = 0, max_iter = 25):
     else:
         return split_num_pre(n * 2024)
 ```
+## [Problem 12](https://adventofcode.com/2024/day/12)
+### Part 1
+For each tile add it to a set `visited` and a list `L`, and check if any of the four adjacent tiles are of the same type. 
+Add each adjacent tile to `L` and recurse the previous step for each adjacent tile that is not already visited.
+Once finished we would have a set of lists, each with contiguous tile positions.
+
+The area of each contiguous area is simply the length of each `L`.
+To obtain the perimeter, we iterate each tile of `L`, and look in all 4 directions (NSEW).
+If the tile next to the current one in the current direction is *not* in `L`, then it is a side.
+### Part 2
+We notice that the number of "contiguous" sides is equal to the number of inner/outer corners. See the below diagram as 
+an example, where the number of sides is equal to the acute/obtuse right-angled corners.
+![Day 12](https://github.com/DylanZammit/Advent-Of-Code-2024/blob/master/img/aocd12.png?raw=true)
