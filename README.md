@@ -175,18 +175,18 @@ Let `i = (i1, i2)` be the vector which the claw is moved when the `A` button is 
 Similarly `j = (j1, j2)` for the `B` button.
 Finally, let `z = (z1, z2)` be the position of the prize.
 We would essentially like to solve the systems of equations given by
-$$
+```math
 \begin{align}
 a i_1 + b j_1 &= z1 \\
 a i_2 + b j_2 &= z2
 \end{align}
-$$
-If we let $A = 
+```
+If we let $`A = 
   \begin{bmatrix}
     i_1 & j_1 \\
     i_2 & j_2 
-  \end{bmatrix}$, then our problem becomes
-$$
+  \end{bmatrix}`$, then our problem becomes
+```math
 \begin{align}
 A \begin{bmatrix}
     a\\
@@ -197,7 +197,7 @@ A \begin{bmatrix}
    b 
   \end{bmatrix} &= A^{-1}z
 \end{align}
-$$
+```
 After solving for `a` and `b` we just need to check that
 * they are both positive
 * they are both close to integers (eg. `np.isclose(a, round(a))`)
