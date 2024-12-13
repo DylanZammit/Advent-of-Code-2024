@@ -168,3 +168,39 @@ If the tile next to the current one in the current direction is *not* in `L`, th
 We notice that the number of "contiguous" sides is equal to the number of inner/outer corners. See the below diagram as 
 an example, where the number of sides is equal to the acute/obtuse right-angled corners.
 ![Day 12](https://github.com/DylanZammit/Advent-Of-Code-2024/blob/master/img/aocd12.png?raw=true)
+## [Problem 13](https://adventofcode.com/2024/day/13)
+### Part 1
+Let `a` and `b` be the number of times we need to press the `A` and `B` buttons respectively.
+Let `i = (i1, i2)` be the vector which the claw is moved when the `A` button is pressed.
+Similarly `j = (j1, j2)` for the `B` button.
+Finally, let `z = (z1, z2)` be the position of the prize.
+We would essentially like to solve the systems of equations given by
+$$
+\begin{align}
+a i_1 + b j_1 &= z1 \\
+a i_2 + b j_2 &= z2
+\end{align}
+$$
+If we let $A = 
+  \begin{bmatrix}
+    i_1 & j_1 \\
+    i_2 & j_2 
+  \end{bmatrix}$, then our problem becomes
+$$
+\begin{align}
+A \begin{bmatrix}
+    a\\
+   b 
+  \end{bmatrix}&=z\\
+\implies\begin{bmatrix}
+    a\\
+   b 
+  \end{bmatrix} &= A^{-1}z
+\end{align}
+$$
+After solving for `a` and `b` we just need to check that
+* they are both positive
+* they are both close to integers (eg. `np.isclose(a, round(a))`)
+* both `a` and `b` are not more than 100not more than 100.
+### Part 2
+For part 2, the third of the conditions above is dropped, but the rest of the solution remains the same.
