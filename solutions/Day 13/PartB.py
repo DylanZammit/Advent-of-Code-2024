@@ -1,3 +1,4 @@
+from functools import partial
 from utils import *
 from aocd import get_data, submit
 
@@ -25,13 +26,16 @@ Prize: X=18641, Y=10279
 machines = dat.split('\n\n')
 print(truncate(dat, 80))
 out = 0
+rtol, atol = 0, 0.001
+isclose = partial(np.isclose, atol=atol, rtol=rtol)
 for machine in machines:
     (i1, i2), (j1, j2), (z1, z2) = parse(machine, ints)
     z1, z2 = z1 + 10000000000000, z2 + 10000000000000
     A = np.array([[i1, i2], [j1, j2]]).T
     a, b = np.linalg.inv(A) @ np.array([z1, z2])
 
-    if np.isclose(np.round(b), b, rtol=0, atol=0.001) and np.isclose(np.round(a), a, rtol=0, atol=0.001) and a > 0 and b > 0:
+
+    if isclose(np.round(b), b) and isclose(np.round(a), a) and a > 0 and b > 0:
         a, b = int(np.round(a)), int(np.round(b))
         out += ( a * 3 + b * 1 )
 
