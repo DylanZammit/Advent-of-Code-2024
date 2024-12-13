@@ -123,6 +123,12 @@ And also for
 * `antenna_position_1 - 1 * diff`
 * `antenna_position_1 - 2 * diff`
 * and so on until out of bounds....
+## [Problem 9](https://adventofcode.com/2024/day/9)
+### Part 1
+Use a left and right pointer. Move the left one until we reach a non-digit. At that point move the right pointer to the left
+until we reach a digit. Pop the digit from the right to the left pointer position, and repeat.
+### Part 2
+Not good code, slow, but it works...avoid my solution like the plague.
 ## [Problem 10](https://adventofcode.com/2024/day/10)
 ### Part 1
 A recursive solution, were we start at every position with height 0 and call method A. 
