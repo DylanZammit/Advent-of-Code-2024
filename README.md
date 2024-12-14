@@ -216,7 +216,10 @@ Modulo arithmetic does the trick. If we start at positions $`(p_x^0, p_y^0)`$ wi
 After $`n`$ second, the `x` value would be $`p_x^1 = p_x^0 + n v_x`$. Since the map wraps, we would need to take the modulo
 of size $`w`$, the width of the map. 
 ```math
-(p_x^1, p_y^1) = ( p_x^0 + nv_x^1 (mod w) ,  p_y^0 + nv_y^1 (mod h) ).
+\begin{align}
+p_x^1 &= (p_x^0 + nv_x) % w  \\
+p_y^1 &= (p_y^0 + nv_y) % h 
+\end{align}
 ```
 A similar task is done for the vertical position.
 ### Part 2
