@@ -212,8 +212,12 @@ After solving for `a` and `b` we just need to check that
 For part 2, the third of the conditions above is dropped, but the rest of the solution remains the same.
 ## [Problem 14](https://adventofcode.com/2024/day/14)
 ### Part 1
-Modulo arithmetic does the trick. If we start at positions $`(p_x, p_y)`$ with velocity $`(v_x, v_y)`$.
-After $`n`$ second, the `x` value would be $`p_x + n v_x`$. Since the map wraps, we would need to take the modulo
-of size $`w`$, the width of the map. A similar task is done for the vertical position.
+Modulo arithmetic does the trick. If we start at positions $`(p_x^0, p_y^0)`$ with velocity $`(v_x, v_y)`$.
+After $`n`$ second, the `x` value would be $`p_x^1 = p_x^0 + n v_x`$. Since the map wraps, we would need to take the modulo
+of size $`w`$, the width of the map. 
+```math
+(p_x^1, p_y^1) = ( p_x^0 + nv_x^1 (mod w) ,  p_y^0 + nv_y^1 (mod h) ).
+```
+A similar task is done for the vertical position.
 ### Part 2
 Sorted all possible maps under 10,000 by number of distinct overlaps descending. One of the top positions gives the tree.
