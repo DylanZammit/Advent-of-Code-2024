@@ -217,7 +217,7 @@ After $`n`$ second, the `x` value would be $`p_x^1 = p_x^0 + n v_x`$. Since the 
 of size $`w`$, the width of the map. 
 ```math
 \begin{align}
-p_x^1 &= (p_x^0 + nv_x) % w  \\
+p_x^1 &= (p_x^0 + nv_x) % w\\
 p_y^1 &= (p_y^0 + nv_y) % h 
 \end{align}
 ```
