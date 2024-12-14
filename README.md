@@ -177,14 +177,14 @@ an example, where the number of sides is equal to the acute/obtuse right-angled 
 ## [Problem 13](https://adventofcode.com/2024/day/13)
 ### Part 1
 Let `a` and `b` be the number of times we need to press the `A` and `B` buttons respectively.
-Let `i = (i1, i2)` be the vector which the claw is moved when the `A` button is pressed.
-Similarly `j = (j1, j2)` for the `B` button.
-Finally, let `z = (z1, z2)` be the position of the prize.
+Let $`i = (i_1, i_2)`$ be the vector which the claw is moved when the `A` button is pressed.
+Similarly $`j = (j_1, j_2)`$ for the `B` button.
+Finally, let $`z = (z_1, z_2)`$ be the position of the prize.
 We would essentially like to solve the systems of equations given by
 ```math
 \begin{align}
-a i_1 + b j_1 &= z1 \\
-a i_2 + b j_2 &= z2
+a i_1 + b j_1 &= z_1 \\
+a i_2 + b j_2 &= z_2
 \end{align}
 ```
 If we let $`A = 
@@ -213,7 +213,7 @@ For part 2, the third of the conditions above is dropped, but the rest of the so
 ## [Problem 14](https://adventofcode.com/2024/day/14)
 ### Part 1
 Modulo arithmetic does the trick. If we start at positions $`(p_x^0, p_y^0)`$ with velocity $`(v_x, v_y)`$.
-After $`n`$ second, the `x` value would be $`p_x^1 = p_x^0 + n v_x`$. Since the map wraps, we would need to take the modulo
+After $`n`$ second, the $`x`$ value would be $`p_x^1 = p_x^0 + n v_x`$. Since the map wraps, we would need to take the modulo
 of size $`w`$, the width of the map. 
 ```math
 \begin{align}
