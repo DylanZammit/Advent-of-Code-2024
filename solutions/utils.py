@@ -518,19 +518,28 @@ def A_star_search(problem, h=None):
     return best_first_search(problem, f=lambda n: n.path_cost + h(n))
 
 
-def best_first_search(problem, f) -> 'Node':
+def best_first_search(problem, f) -> Tuple['Node', list['Node']]:
     "Search nodes with minimum f(node) value first."
     node = Node(problem.initial)
     frontier = PriorityQueue([node], key=f)
     reached = {problem.initial: node}
+    reached_prev = {problem.initial: (node, None)}
     while frontier:
         node = frontier.pop()
         if problem.is_goal(node.state):
-            return node
+            curr_node = node.state
+            final_path = [node]
+            while reached_prev[curr_node][1] is not None:
+                prev_node = reached_prev[curr_node][1]#.state
+                final_path.append(prev_node)
+                curr_node = prev_node.state
+            final_path = final_path[::-1]
+            return node, final_path
         for child in expand(problem, node):
             s = child.state
             if s not in reached or child.path_cost < reached[s].path_cost:
                 reached[s] = child
+                reached_prev[s] = (child, node)
                 frontier.add(child)
     return search_failure
 
@@ -569,6 +578,8 @@ class GridProblem(SearchProblem):
 
     def h(self, node):                return taxi_distance(node.state, self.goal)
 
+    def action_cost(self, s, a, s1): return self.grid[a]
+
 
 class Node:
     "A Node in a search tree."
@@ -583,7 +594,7 @@ class Node:
     def __lt__(self, other): return self.path_cost < other.path_cost
 
 
-search_failure = Node('failure', path_cost=inf)  # Indicates an algorithm couldn't find a solution.
+search_failure = (Node('failure', path_cost=inf), None)  # Indicates an algorithm couldn't find a solution.
 
 
 def expand(problem, node):
@@ -661,3 +672,12 @@ class AttrCounter(Counter):
 
     def __setattr__(self, attr, value):
         self[attr] = value
+
+
+if __name__ == '__main__':
+    n = 3
+    dat = np.random.randint(0, 10, (n, n))
+    grid = Grid(dat, directions=directions4)
+    sp = GridProblem(grid=grid, initial=(0, 0), goal=(n-1, n-1))
+    print(dat)
+    print(A_star_search(sp))
