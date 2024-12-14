@@ -578,7 +578,7 @@ class GridProblem(SearchProblem):
 
     def h(self, node):                return taxi_distance(node.state, self.goal)
 
-    def action_cost(self, s, a, s1): return self.grid[a]
+    # def action_cost(self, s, a, s1): return self.grid[a]
 
 
 class Node:
