@@ -218,7 +218,7 @@ of size $`w`$, the width of the map.
 ```math
 \begin{align}
 p_x^1 &= p_x^0 + nv_x \text{ (mod w)} \\
-p_y^1 &= p_y^0 + nv_y \text{ (mod h)} h 
+p_y^1 &= p_y^0 + nv_y \text{ (mod h)}  
 \end{align}
 ```
 A similar task is done for the vertical position.
