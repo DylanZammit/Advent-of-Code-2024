@@ -195,11 +195,11 @@ If we let $`A =
 ```math
 \begin{align}
 A \begin{bmatrix}
-    a\\
+   a\\
    b 
   \end{bmatrix}&=z\\
 \implies\begin{bmatrix}
-    a\\
+   a\\
    b 
   \end{bmatrix} &= A^{-1}z
 \end{align}
@@ -207,7 +207,7 @@ A \begin{bmatrix}
 After solving for `a` and `b` we just need to check that
 * they are both positive
 * they are both close to integers (eg. `np.isclose(a, round(a))`)
-* both `a` and `b` are not more than 100not more than 100.
+* both `a` and `b` are not more than 100.
 ### Part 2
 For part 2, the third of the conditions above is dropped, but the rest of the solution remains the same.
 ## [Problem 14](https://adventofcode.com/2024/day/14)
