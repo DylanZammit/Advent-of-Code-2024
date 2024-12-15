@@ -224,3 +224,17 @@ p_y^1 &= p_y^0 + nv_y \text{ (mod h)}
 A similar task is done for the vertical position.
 ### Part 2
 Sorted all possible maps under 10,000 by number of distinct overlaps descending. One of the top positions gives the tree.
+## [Problem 15](https://adventofcode.com/2024/day/15)
+### Part 1
+Each iteration is a move in the current direction, where you skip a turn if faced with a barrier `#`.
+If a box `O` is encountered, we check the first non-box tile in the same direction. If this tile is a `#`, do nothing.
+Otherwise shift all these boxes by 1.
+### Part 2
+Same procedure as above with one major adjustment: when meeting a box vertically.
+Upon reaching a box, a recursive procedure starts.
+* Start with the position of the box you collided with $`p_1`$.
+* Without loss of generality, assume that $`p_1`$ is a `[` and $`p_2`$ is a `]` (or swap otherwise).
+* Check the tile in front of $`p_i`$ in the same direction and call it $`q_i`$ for $`i\in\{1,2\}`$.
+* If any of $`q_1, q_2`$ are `#`, then no box can be moved. 
+* If they are both `.`, then these boxes can be safely shifted.
+* Otherwise, recurse from step 1, this time for $`q_1`$ if it is part of a box, and similarly for $`q_2`$.
