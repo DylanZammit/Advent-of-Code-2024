@@ -238,3 +238,20 @@ Upon reaching a box, a recursive procedure starts.
 * If any of $`q_1, q_2`$ are `#`, then no box can be moved. 
 * If they are both `.`, then these boxes can be safely shifted.
 * Otherwise, recurse from step 1, this time for $`q_1`$ if it is part of a box, and similarly for $`q_2`$.
+## [Problem 16](https://adventofcode.com/2024/day/16)
+### Part 1
+A straightforward implementation of A* algorithm, where create the map by filling the grid with `#`, and the cost of an action is defined as
+```python
+def action_cost(self, s, a, s1): return np.inf if self.grid[a] == '#' else 1
+```
+### Part 2
+We iterate from `k=1024` onwards (since we know there is a path up until then), and store the shortest path in memory (not just the cost).
+At every iteration we place a `#` at the new location and check if it lands on the current shortest path.
+If not, the shortest path is untouched, and the same path remains. Otherwise it needs to be recalculated.
+If the script hangs, we have found our answer!
+
+Two potential improvements are:
+* exit strategy for when a path is not found instead of hanging.
+* when a path is hit by a `#`, recalculate A* only from that point onward.
+
+Even without these two improvements, the script finishes in less than a second on my machine.

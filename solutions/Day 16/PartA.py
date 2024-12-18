@@ -64,8 +64,7 @@ def A_star_search(problem, h=None):
 
 def best_first_search(problem, f) -> Tuple['Node', list['Node']]:
     "Search nodes with minimum f(node) value first."
-    node = Node(problem.initial)
-    direction = None
+    node, direction = Node(problem.initial), None
 
     frontier = PriorityQueue([(node, direction)], key=f)
     reached = {problem.initial: node}
