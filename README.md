@@ -255,3 +255,23 @@ Two potential improvements are:
 * when a path is hit by a `#`, recalculate A* only from that point onward.
 
 Even without these two improvements, the script finishes in less than a second on my machine.
+## [Problem 19](https://adventofcode.com/2024/day/19)
+### Part 1
+We employ a recursive solution to both parts, with the first technically being a subset of the second.
+We iterate through the towel starting from the first part (letter), and checking if it exists in the list of pieces.
+If it exists we have two options:
+* recurse with the rest of the towel.
+* increase the part of the towel by 1, and check if this 2-part towel exists in the list of pieces.
+Then repeat until the recursed towel is of 0 length, which means that all pieces of the towel have been found successfully.
+There is no need to continue searching, and we can return true. If this condition is never reached, we return false.
+### Part 2
+This part is similar, but instead of stopping at the first `return True` condition, we instead `return 1`, and proceed the search.
+The method should output the number of ways to make the towel.
+Caching the recursive function is a must.
+```python
+@cache
+def get_combs(towel) -> int:
+    if towel == '': return 1
+    return sum(get_combs(towel[j+1:]) for j in range(len(towel)) if towel[:j+1] in pieces)
+```
+*NOTE*: Actually trying to display the combinations that make up the towel is a challenge as it might take up too much memory and slow the script down considerably, making it infeasible.
