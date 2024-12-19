@@ -23,10 +23,9 @@ combo = {0: 0, 1: 1, 2: 2, 3: 3, 4: A, 5: B, 6: C, 7: 7}
 def op(x, y):
     global A, B, C, i
     res = None
-    def div(y):
-        return int(A / (2 ** combo[y]))
+
     if x == 0:
-        A = div(y)
+        A = A >> combo[y]
     if x == 1:
         B ^= y
     if x == 2:
@@ -38,9 +37,9 @@ def op(x, y):
     if x == 5:
         res = combo[y] % 8
     if x == 6:
-        B = div(y)
+        B = A >> combo[y]
     if x == 7:
-        C = div(y)
+        C = A >> combo[y]
     combo[4] = A
     combo[5] = B
     combo[6] = C
