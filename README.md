@@ -240,6 +240,17 @@ Upon reaching a box, a recursive procedure starts.
 * Otherwise, recurse from step 1, this time for $`q_1`$ if it is part of a box, and similarly for $`q_2`$.
 ## [Problem 16](https://adventofcode.com/2024/day/16)
 ### Part 1
+An implementation of A* algorithm with a 3-dimensional grid, with the third dimension being the direction.
+```python
+def action_cost(self, s, a, s1):
+    if self.grid[a] == '#': return np.inf
+    return 1 if s[1] == a[1] else 1001
+```
+### Part 2
+Once A* finds the optimal path, we continue searching paths attaining the same cost as the first one.
+These are then expanded, and the total unique number of tiles are counted.
+## [Problem 18](https://adventofcode.com/2024/day/18)
+### Part 1
 A straightforward implementation of A* algorithm, where create the map by filling the grid with `#`, and the cost of an action is defined as
 ```python
 def action_cost(self, s, a, s1): return np.inf if self.grid[a] == '#' else 1
