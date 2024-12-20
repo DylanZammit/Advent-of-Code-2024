@@ -249,6 +249,11 @@ def action_cost(self, s, a, s1):
 ### Part 2
 Once A* finds the optimal path, we continue searching paths attaining the same cost as the first one.
 These are then expanded, and the total unique number of tiles are counted.
+## [Problem 17](https://adventofcode.com/2024/day/17)
+### Part 1
+A straightforward implementation by following the rules. Note that "dividing `x` by 2 power `z` and taking the floor" is
+equivalent to shifting the bits by `z` spaces. In python this is denoted by `x >> z`.
+### Part 2
 ## [Problem 18](https://adventofcode.com/2024/day/18)
 ### Part 1
 A straightforward implementation of A* algorithm, where create the map by filling the grid with `#`, and the cost of an action is defined as
