@@ -518,28 +518,19 @@ def A_star_search(problem, h=None):
     return best_first_search(problem, f=lambda n: n.path_cost + h(n))
 
 
-def best_first_search(problem, f) -> Tuple['Node', list['Node']]:
+def best_first_search(problem, f) -> 'Node':
     "Search nodes with minimum f(node) value first."
     node = Node(problem.initial)
     frontier = PriorityQueue([node], key=f)
     reached = {problem.initial: node}
-    reached_prev = {problem.initial: (node, None)}
     while frontier:
         node = frontier.pop()
         if problem.is_goal(node.state):
-            curr_node = node.state
-            final_path = [node]
-            while reached_prev[curr_node][1] is not None:
-                prev_node = reached_prev[curr_node][1]#.state
-                final_path.append(prev_node)
-                curr_node = prev_node.state
-            final_path = final_path[::-1]
-            return node, final_path
+            return node
         for child in expand(problem, node):
             s = child.state
             if s not in reached or child.path_cost < reached[s].path_cost:
                 reached[s] = child
-                reached_prev[s] = (child, node)
                 frontier.add(child)
     return search_failure
 
@@ -594,7 +585,7 @@ class Node:
     def __lt__(self, other): return self.path_cost < other.path_cost
 
 
-search_failure = (Node('failure', path_cost=inf), None)  # Indicates an algorithm couldn't find a solution.
+search_failure = Node('failure', path_cost=inf)  # Indicates an algorithm couldn't find a solution.
 
 
 def expand(problem, node):
@@ -615,9 +606,15 @@ def path_actions(node):
 
 def path_states(node):
     "The sequence of states to get to this node."
-    if node in (search_failure, None):
-        return []
-    return path_states(node.parent) + [node.state]
+    # if node in (search_failure, None):
+    #     return []
+    out = []
+    while node not in (search_failure, None):
+        out.append(node.state)
+        node = node.parent
+    return out[::-1]
+
+    # return path_states(node.parent) + [node.state]
 
 
 class PriorityQueue:
