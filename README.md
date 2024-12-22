@@ -291,3 +291,19 @@ def get_combs(towel) -> int:
     return sum(get_combs(towel[j+1:]) for j in range(len(towel)) if towel[:j+1] in pieces)
 ```
 *NOTE*: Actually trying to display the combinations that make up the towel is a challenge as it might take up too much memory and slow the script down considerably, making it infeasible.
+## [Problem 22](https://adventofcode.com/2024/day/22)
+### Part 1
+Simply following instructions. These can be summarised by the following method.
+```python
+def gen_secret(secret):
+    secret = (secret ^ (secret << 6)) % (2 ** 24)
+    secret = (secret ^ (secret >> 5)) % (2 ** 24)
+    secret = (secret ^ (secret << 11)) % (2 ** 24)
+    return secret
+```
+### Part 2
+At each secret generation we keep track of the last 4 changes and store these changes as a key, and the price as a dictionary value.
+We ignore any repeated diffs for the same merchant. But if we encounter the sequence again for a different merchant, we add
+the price to the already-existing value.
+
+Finally we can find the maximum value of the dictionary.

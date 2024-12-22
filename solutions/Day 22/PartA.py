@@ -23,11 +23,9 @@ truncate(dat, 80)
 
 
 def gen_secret(secret):
-
     secret = (secret ^ (secret << 6)) % (2 ** 24)
     secret = (secret ^ (secret >> 5)) % (2 ** 24)
     secret = (secret ^ (secret << 11)) % (2 ** 24)
-
     return secret
 
 n_iter = 2000
