@@ -307,3 +307,34 @@ We ignore any repeated diffs for the same merchant. But if we encounter the sequ
 the price to the already-existing value.
 
 Finally we can find the maximum value of the dictionary.
+## [Problem 23](https://adventofcode.com/2024/day/23)
+### Part 1
+* Create a dictionary representing an undirected graph, where each vertex is a key, whose corresponding values are the node's neighbours.
+* For each key in the dictionary starting with `t`, call it `c3`:
+  * Take every pair of possible neighbours, `c1` and `c2`.
+  * Check if `c2` and `c3` are neighbours. If they are, add (`c1`, `c2`, `c3`) to a set `K`.
+* Count the number of elements of `K`
+### Part 2
+This is a concept of a [clique](https://en.wikipedia.org/wiki/Clique_(graph_theory)) in graph theory.
+A clique is a fully connected subgraph of a graph. Picture a social network graph, where any two friends are connected.
+A clique is essentially a group of friends, where every two persons are friends.
+
+What we want is a maximal clique.
+
+> A maximal clique is a clique that cannot be extended by including one more adjacent vertex, that is, a clique which does not exist exclusively within the vertex set of a larger clique.
+
+Finding all cliques, or the maximal clique is an NP-complete problem. The [Bron–Kerbosch algorithm](https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm) is a polynomial-time algorithm for finding the maximal clique in a graph.
+We implement this algorithm for the solution of part 2.
+
+```python
+cliques = set()
+def bron_kerbosch(P, R, X):
+    if P == set() and X == set():
+        cliques.add(','.join(sorted(tuple(R))))
+        return R
+    P_orig = P.copy()
+    for v in P_orig:
+        bron_kerbosch(P & g[v], R | {v}, X & g[v])
+        P.remove(v)
+        X = X | {v}
+```

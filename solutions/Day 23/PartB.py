@@ -50,7 +50,7 @@ for conn in dat:
     g[c2].add(c1)
 
 cliques = set()
-def bron_kerbosch(P: set, R: set, X: set):
+def bron_kerbosch(P, R, X):
     if P == set() and X == set():
         cliques.add(','.join(sorted(tuple(R))))
         return R
