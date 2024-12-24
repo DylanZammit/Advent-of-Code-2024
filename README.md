@@ -342,16 +342,17 @@ def bron_kerbosch(P, R, X):
 ### Part 1
 For part 1 we should iterate all commands, and apply the operation only if the two operands are defined.
 We iterate until all commands have been run, and return the last value of `z`. To calculate the decimal value of `z` from
-a list of binary digits $`z_{(2)} = [z_n, z_{n-1}, \cdots, z_1]`$` we compute
+a list of binary digits $`z_{(2)} = [z_n, z_{n-1}, \cdots, z_1]`$ we compute
 ```math
 z_{(10)} = \sum_{i=0}^n z_i \cdot 2^i.
 ```
 ### Part 2
 We calculate the correct value of `x + y = z` and convert to binary, and compare that value to the binary representation of `z` by running part 1.
-```text
-z_incorrect 58367545758258 1101010001010111000000110101001101001000**1**10010
-z_correct   58367528979026 1101010001010110111111110101001100101001**0**10010
-```
+
+58367545758258 = 1101010001010111000000110101001101001000**1**10010  <-- incorrect
+
+58367528979026 = 1101010001010110111111110101001100101001**0**10010  <-- correct
+
 Most bits seem to be in order, with the first incorrect one occurring at the 6th bit highlighted in **bold**.
 This would be a good starting point to look into.
 We also notice that a pattern emerges if we draw the logic gates of the first couple of iterations as seen below.
@@ -361,6 +362,6 @@ Thus our strategy is a semi-programmatic one, where we write down the expected s
 At this point I check the command outputting the correct output, and swap with the wrong one. That would give me the first pair.
 I repeat this procedure 3 more times and sort the 8 outputs.
 
-In fact, the first time the script paused in my case, was on the 6th digit as expected.
+In fact, the first time the script paused in my case, was on the 6th digit as expected. This is only the case for my input.
 
 **NOTE**: This strategy is a bit of a 'pen-and-paper' strategy and is not generalisable. It was only possible because there were only a low number of swaps required.
