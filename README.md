@@ -291,6 +291,12 @@ def get_combs(towel) -> int:
     return sum(get_combs(towel[j+1:]) for j in range(len(towel)) if towel[:j+1] in pieces)
 ```
 *NOTE*: Actually trying to display the combinations that make up the towel is a challenge as it might take up too much memory and slow the script down considerably, making it infeasible.
+## [Problem 20](https://adventofcode.com/2024/day/20)
+### Part 1
+### Part 2
+## [Problem 21](https://adventofcode.com/2024/day/21)
+### Part 1
+### Part 2
 ## [Problem 22](https://adventofcode.com/2024/day/22)
 ### Part 1
 Simply following instructions. These can be summarised by the following method.
@@ -365,3 +371,6 @@ I repeat this procedure 3 more times and sort the 8 outputs.
 In fact, the first time the script paused in my case, was on the 6th digit as expected. This is only the case for my input.
 
 **NOTE**: This strategy is a bit of a 'pen-and-paper' strategy and is not generalisable. It was only possible because there were only a low number of swaps required.
+## [Problem 25](https://adventofcode.com/2024/day/25)
+### Part 1
+### Part 2
