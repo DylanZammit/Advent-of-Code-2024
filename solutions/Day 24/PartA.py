@@ -70,7 +70,6 @@ starts, cmds = dat.split('\n\n')
 wires = {k: int(v) for k, v in [x.split(': ') for x in starts.split('\n')]}
 wires_z = {}
 
-complete = 0
 all_cmds = cmds.split('\n')
 all_cmds = [tuple(x.split()) for x in all_cmds]
 n_cmd = len(all_cmds)
@@ -96,6 +95,5 @@ def bin_to_dec(d):
 
 z = bin_to_dec(wires_z)
 
-print(wires_z)
 print(z)
 submit(z, part="a", day=day, year=year)
