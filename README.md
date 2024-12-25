@@ -293,7 +293,27 @@ def get_combs(towel) -> int:
 *NOTE*: Actually trying to display the combinations that make up the towel is a challenge as it might take up too much memory and slow the script down considerably, making it infeasible.
 ## [Problem 20](https://adventofcode.com/2024/day/20)
 ### Part 1
+My initial attempt was to use A* algorithm to find the shortest route. The state would have an extra dimension called `cheat`
+which is a boolean variable indicating whether the player has already cheated at some point in the past or not.
+If he has, then he cannot cheat again, and must traverse the path to the next valid `.`. Otherwise the valid states he 
+can move to are one extra step further, potentially skipping a `#`.  This works find for part 1, but is difficult to code for part 2, and is inefficient.
+
+Opening up the data, and `Ctrl-F`-ing `.` we get the below image.
+![Day 20](https://github.com/DylanZammit/Advent-Of-Code-2024/blob/master/img/aocd20.png?raw=true)
+
+We notice to essential things:
+1. There are no forks in the path.
+2. All `.` are used up.
+
+The first point renders the A* algorithm unnecessary since there is one and only one valid path that reaches the end.
+* We first find the correct path, and saving the step number along every tile `.`.
+* We go through this list of tiles again, and at every tile we:
+  * Iterate through all `.` of the map.
+  * Check if the taxi distance is less than or equal to 2.
+  * Check if the step number of the tile is 20 more than the current step number.
+  * If so, we increment `out` by 1.
 ### Part 2
+We apply the same strategy as above, but update the taxi distance 2 to 20, and the minimum improvement from 20 to 100.
 ## [Problem 21](https://adventofcode.com/2024/day/21)
 ### Part 1
 ### Part 2
