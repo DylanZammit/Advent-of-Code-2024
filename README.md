@@ -372,5 +372,9 @@ In fact, the first time the script paused in my case, was on the 6th digit as ex
 
 **NOTE**: This strategy is a bit of a 'pen-and-paper' strategy and is not generalisable. It was only possible because there were only a low number of swaps required.
 ## [Problem 25](https://adventofcode.com/2024/day/25)
-### Part 1
-### Part 2
+No need to differentiate between keys and locks really using this method. We take a brute force approach and iterate every two pairs of schematics `L` and `K`.
+We put the coordinates of `#` in a set for both `L` and `K`, and then check if their intersection is empty.
+If it is, we can increment by 1 as there is no overlap.
+```python
+valid = sum(1 for s1, s2 in combinations(schematics_sets, 2) if len(s1 & s2) == 0)
+```
