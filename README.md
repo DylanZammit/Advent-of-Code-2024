@@ -2,7 +2,7 @@
 
 Attempts for the [Advent of Code](https://adventofcode.com/) 2024.
 
-![Calendar](https://github.com/DylanZammit/Advent-Of-Code-2023/blob/master/img/calendar.png?raw=true)
+![Calendar](https://github.com/DylanZammit/Advent-Of-Code-2024/blob/master/img/calendar.png?raw=true)
 
 **WARNING: SPOILERS AHEAD**
 
