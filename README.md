@@ -254,6 +254,12 @@ These are then expanded, and the total unique number of tiles are counted.
 A straightforward implementation by following the rules. Note that "dividing `x` by 2 power `z` and taking the floor" is
 equivalent to shifting the bits by `z` spaces. In python this is denoted by `x >> z`.
 ### Part 2
+We notice that the 3rd from left-most digit changes on every 8 iterations. Starting from the left, we then iterate A in steps
+of 8 ^ m, where `m=12`, end we keep track of "valid" ranges `(min_A1, max_A1), (min_A2, max_A2), ...`. An output is valid if the (m+1)th
+of the actual output digit agrees with the (m+1)th digit of the expected output.
+
+We decrement `m` by 1 and repeat until `m=0`, at which point we would try all remaining combinations (since we are moving in steps of 1).
+This is repeated until the actual output matches with the expected output.
 ## [Problem 18](https://adventofcode.com/2024/day/18)
 ### Part 1
 A straightforward implementation of A* algorithm, where create the map by filling the grid with `#`, and the cost of an action is defined as
