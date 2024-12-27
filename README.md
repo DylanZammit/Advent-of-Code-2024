@@ -316,7 +316,17 @@ The first point renders the A* algorithm unnecessary since there is one and only
 We apply the same strategy as above, but update the taxi distance 2 to 20, and the minimum improvement from 20 to 100.
 ## [Problem 21](https://adventofcode.com/2024/day/21)
 ### Part 1
+The general idea is as follows.
+* We find the shortest path on the keypad by first moving horizontally, and then vertically or vice versa.
+* We take the `diff` of this path to find the arrows that need to be pressed (each with an `A` appended at the end).
+* We find the shortest path on the direction pad by first moving horizontally, and then vertically or vice versa. 
+* We take the `diff` of this path to find the arrows that need to be pressed (each with an `A` appended at the end).
+* Recurse the previous 2 steps until a depth of `n=2` robot. At this point, return the length of the shortest path.
+ 
+Note that due to the illegal keypad and direction-pad tile, you can *only* initially move either horizontally or vertically.
+In the case where both options are viable, both options must be computed, and the shortest path must be taken.
 ### Part 2
+The exact same script as above can be used with `n=25` instead.
 ## [Problem 22](https://adventofcode.com/2024/day/22)
 ### Part 1
 Simply following instructions. These can be summarised by the following method.
